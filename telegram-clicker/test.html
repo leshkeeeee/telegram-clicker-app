@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e27;
+            color: white;
+        }
+        .test-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-info {
+            background: #1a2142;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .test-info h2 {
+            margin-top: 0;
+            color: #6c5ce7;
+        }
+        .test-info p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .test-info code {
+            background: #0a0e27;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .app-frame {
+            width: 100%;
+            height: calc(100vh - 200px);
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #5f4fd1;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-info">
+            <h2>🧪 Telegram Mini App - Test Mode</h2>
+            <p>Это тестовая страница для локальной разработки.</p>
+            <p><strong>Для запуска:</strong></p>
+            <ol>
+                <li>Запустите локальный сервер: <code>python server.py</code></li>
+                <li>Откройте <code>http://localhost:8000/test.html</code></li>
+                <li>Или откройте <code>http://localhost:8000</code> напрямую</li>
+            </ol>
+            <p><strong>Функции:</strong></p>
+            <ul>
+                <li>✅ Полная механика тапов с энергией</li>
+                <li>✅ 4 типа улучшений</li>
+                <li>✅ Система достижений</li>
+                <li>✅ Офлайн заработок</li>
+                <li>✅ Анимированный фон с частицами</li>
+                <li>✅ Автосохранение прогресса</li>
+            </ul>
+            <div style="margin-top: 20px;">
+                <button class="btn" onclick="location.href='index.html'">🚀 Запустить приложение</button>
+                <button class="btn" onclick="clearProgress()">🗑️ Очистить прогресс</button>
+            </div>
+        </div>
+
+        <iframe class="app-frame" src="index.html"></iframe>
+    </div>
+
+    <script>
+        function clearProgress() {
+            if (confirm('Вы уверены? Весь прогресс будет удален.')) {
+                localStorage.removeItem('cryptoClickerState');
+                location.reload();
+            }
+        }
+
+        // Mock Telegram WebApp API для тестирования
+        if (!window.Telegram) {
+            window.Telegram = {
+                WebApp: {
+                    ready: () => console.log('Telegram WebApp ready (mock)'),
+                    expand: () => console.log('Telegram WebApp expand (mock)'),
+                    HapticFeedback: {
+                        impactOccurred: (style) => console.log('Haptic:', style),
+                        notificationOccurred: (type) => console.log('Notification:', type)
+                    },
+                    showPopup: (params) => {
+                        alert(params.title + '\n\n' + params.message);
+                    },
+                    showAlert: (message) => {
+                        alert(message);
+                    },
+                    initDataUnsafe: {
+                        user: {
+                            id: 123456789,
+                            first_name: 'Test User',
+                            username: 'testuser'
+                        }
+                    },
+                    CloudStorage: {
+                        setItem: (key, value) => {
+                            console.log('CloudStorage.setItem:', key);
+                            localStorage.setItem('tg_' + key, value);
+                        },
+                        getItem: (key, callback) => {
+                            const value = localStorage.getItem('tg_' + key);
+                            callback(null, value);
+                        }
+                    }
+                }
+            };
+        }
+    </script>
+</body>
+</html>

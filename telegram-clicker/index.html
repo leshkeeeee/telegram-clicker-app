@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0e27">
+    <title>Crypto Clicker</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="user-info">
+                <div class="avatar" id="userAvatar">👤</div>
+                <div class="user-details">
+                    <div class="username" id="username">Player</div>
+                    <div class="level">Level <span id="level">1</span></div>
+                </div>
+            </div>
+            <div class="energy-container">
+                <div class="energy-icon">⚡</div>
+                <div class="energy-text">
+                    <span id="energy">1000</span>/<span id="maxEnergy">1000</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Balance Section -->
+        <section class="balance-section">
+            <div class="balance-label">Your Balance</div>
+            <div class="balance-amount">
+                <span class="coin-icon">💎</span>
+                <span id="balance">0</span>
+            </div>
+            <div class="profit-per-hour">
+                Profit per hour: <span id="profitPerHour">0</span> 💎
+            </div>
+        </section>
+
+        <!-- Tap Area -->
+        <section class="tap-section">
+            <div class="tap-circle" id="tapCircle">
+                <div class="tap-icon">💎</div>
+                <div class="tap-multiplier" id="tapMultiplier">+1</div>
+            </div>
+            <div class="floating-numbers" id="floatingNumbers"></div>
+        </section>
+
+        <!-- Boost Section -->
+        <section class="boost-section" id="boostsTab">
+            <div class="boost-title">⚡ Boosts</div>
+            <div class="boost-grid">
+                <div class="boost-card" id="boostEnergy">
+                    <div class="boost-icon">🔋</div>
+                    <div class="boost-info">
+                        <div class="boost-name">Energy Limit</div>
+                        <div class="boost-level">Level <span id="energyBoostLevel">1</span></div>
+                    </div>
+                    <div class="boost-cost">💎 <span id="energyBoostCost">100</span></div>
+                </div>
+                <div class="boost-card" id="boostMultiplier">
+                    <div class="boost-icon">⚡</div>
+                    <div class="boost-info">
+                        <div class="boost-name">Tap Power</div>
+                        <div class="boost-level">Level <span id="multiplierBoostLevel">1</span></div>
+                    </div>
+                    <div class="boost-cost">💎 <span id="multiplierBoostCost">50</span></div>
+                </div>
+                <div class="boost-card" id="boostAuto">
+                    <div class="boost-icon">🤖</div>
+                    <div class="boost-info">
+                        <div class="boost-name">Auto Farm</div>
+                        <div class="boost-level">Level <span id="autoBoostLevel">0</span></div>
+                    </div>
+                    <div class="boost-cost">💎 <span id="autoBoostCost">500</span></div>
+                </div>
+                <div class="boost-card" id="boostRecharge">
+                    <div class="boost-icon">⚡</div>
+                    <div class="boost-info">
+                        <div class="boost-name">Recharge Speed</div>
+                        <div class="boost-level">Level <span id="rechargeBoostLevel">1</span></div>
+                    </div>
+                    <div class="boost-cost">💎 <span id="rechargeBoostCost">200</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tasks Section -->
+        <section class="tasks-section hidden" id="tasksTab">
+            <div class="section-title">🎯 Achievements</div>
+            <div class="achievements-list" id="achievementsList"></div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section hidden" id="statsTab">
+            <div class="section-title">📊 Statistics</div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👆</div>
+                    <div class="stat-value" id="statTotalTaps">0</div>
+                    <div class="stat-label">Total Taps</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value" id="statTotalEarned">0</div>
+                    <div class="stat-label">Total Earned</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-value" id="statLevel">1</div>
+                    <div class="stat-label">Current Level</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-value" id="statTapPower">1</div>
+                    <div class="stat-label">Tap Power</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🤖</div>
+                    <div class="stat-value" id="statProfitPerHour">0</div>
+                    <div class="stat-label">Profit/Hour</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎖️</div>
+                    <div class="stat-value" id="statAchievements">0/7</div>
+                    <div class="stat-label">Achievements</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-tab="home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-item" data-tab="boosts">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-label">Boosts</span>
+            </button>
+            <button class="nav-item" data-tab="tasks">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Tasks</span>
+            </button>
+            <button class="nav-item" data-tab="stats">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Stats</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Particles Background -->
+    <canvas id="particles"></canvas>
+
+    <script src="app.js"></script>
+</body>
+</html>
