@@ -1,257 +1,229 @@
 # 💎 Crypto Clicker - Telegram Mini App
 
-<div align="center">
+Простая игра-кликер для Telegram с системой улучшений и достижений.
 
-![Telegram Mini App](https://img.shields.io/badge/Telegram-Mini%20App-blue?style=for-the-badge&logo=telegram)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow?style=for-the-badge&logo=javascript)
+## 🎮 Что это?
 
-**Качественная тапалка для Telegram с плавными анимациями и современным дизайном**
+Telegram Mini App - игра где нужно тапать по монете, зарабатывать кристаллы и покупать улучшения.
 
-[🎮 Демо](https://leshkeeeee.github.io/telegram-clicker-app/) • [📖 Документация](./TELEGRAM_SETUP.md) • [🚀 Быстрый старт](./QUICKSTART.md)
-
-</div>
+**Особенности:**
+- 🎯 Система тапов с энергией
+- ⚡ 4 типа улучшений
+- 🏆 7 достижений с наградами
+- 💾 Автосохранение прогресса
+- 📱 Работает на всех устройствах
 
 ---
 
-## ✨ Особенности
-
-- 🎮 **Плавная механика тапов** с haptic feedback
-- ⚡ **Система энергии** с автоматическим восстановлением
-- 🚀 **4 типа улучшений**:
-  - 🔋 Увеличение лимита энергии
-  - ⚡ Увеличение силы тапа
-  - 🤖 Автоматическая ферма
-  - ⚡ Скорость восстановления энергии
-- 💰 **Офлайн заработок** - получайте монеты даже когда не играете
-- 🎯 **7 достижений** с наградами
-- 📊 **Система уровней** с прогрессией
-- 💾 **Автосохранение** в localStorage и Telegram Cloud Storage
-- 📱 **Адаптивный дизайн** для всех размеров экранов
-- 🎨 **Красивые анимации** и эффекты частиц
-
 ## 🚀 Быстрый старт
 
-### Вариант 1: Использовать готовое приложение
+### Вариант 1: Деплой на Vercel (рекомендуется)
 
-1. **Включите GitHub Pages**
-   - Откройте: [Settings → Pages](https://github.com/leshkeeeee/telegram-clicker-app/settings/pages)
-   - Source: выберите **GitHub Actions**
-   - Подождите 1-2 минуты
+**Время: 2 минуты**
 
-2. **Создайте Telegram бота**
+1. Откройте: https://vercel.com/signup
+2. Нажмите "Continue with GitHub"
+3. Найдите репозиторий `telegram-clicker-app`
+4. Нажмите "Import" → "Deploy"
+5. Скопируйте URL (например: `https://telegram-clicker-app.vercel.app`)
+
+✅ Готово! Переходите к созданию бота ⬇️
+
+---
+
+### Вариант 2: GitHub Pages
+
+**Время: 3-5 минут**
+
+1. **Активируйте GitHub Pages:**
+   - Откройте: https://github.com/leshkeeeee/telegram-clicker-app/settings/pages
+   - Source: выберите **"GitHub Actions"**
+
+2. **Включите Actions (если нужно):**
+   - Откройте: https://github.com/leshkeeeee/telegram-clicker-app/settings/actions
+   - Выберите "Allow all actions and reusable workflows"
+   - Включите "Read and write permissions"
+
+3. **Запустите деплой:**
+   - Откройте: https://github.com/leshkeeeee/telegram-clicker-app/actions
+   - Если видите "Workflows aren't being run" - нажмите "Enable"
+   - Выберите "Deploy to GitHub Pages" → "Run workflow"
+
+4. **Дождитесь зеленой галочки ✅**
+
+5. **Проверьте сайт:**
+   - https://leshkeeeee.github.io/telegram-clicker-app/
+
+✅ Работает? Переходите к созданию бота ⬇️
+
+---
+
+## 🤖 Создание Telegram бота
+
+### Шаг 1: Создайте бота
+
+1. Откройте @BotFather в Telegram
+2. Отправьте: `/newbot`
+3. Придумайте имя (например: `My Clicker`)
+4. Придумайте username (например: `my_clicker_bot`)
+5. **Скопируйте токен** (выглядит как `1234567890:ABCdefGHIjklMNOpqrsTUVwxyz`)
+
+### Шаг 2: Создайте Mini App
+
+1. В @BotFather отправьте: `/newapp`
+2. Выберите вашего бота
+3. Название: `Crypto Clicker`
+4. Описание: `Tap to earn crystals!`
+5. Фото: загрузите любую картинку 640x360
+6. GIF: пропустите (отправьте `/empty`)
+7. **Web App URL**: вставьте ваш URL
+   - Vercel: `https://telegram-clicker-app.vercel.app`
+   - GitHub Pages: `https://leshkeeeee.github.io/telegram-clicker-app/`
+8. Short name: `clicker`
+
+### Шаг 3: Настройте бота (опционально)
+
+Если хотите запустить Python бота:
+
+1. Откройте файл `bot.py`
+2. Вставьте ваш токен:
+   ```python
+   TOKEN = "ваш_токен_от_BotFather"
+   WEB_APP_URL = "ваш_url_vercel_или_github_pages"
    ```
-   1. Откройте @BotFather в Telegram
-   2. Отправьте: /newbot
-   3. Создайте Mini App: /newapp
-   4. URL: https://leshkeeeee.github.io/telegram-clicker-app/
+3. Установите библиотеку:
+   ```bash
+   pip install pytelegrambotapi
+   ```
+4. Запустите:
+   ```bash
+   python bot.py
    ```
 
-3. **Готово!** 🎉
+**Примечание:** Python бот не обязателен! Mini App работает и без него.
 
-📖 **Подробная инструкция**: [SETUP_COMPLETE.md](./SETUP_COMPLETE.md)
+---
 
-### Вариант 2: Локальное тестирование
+## ✅ Готово!
+
+Откройте вашего бота в Telegram и нажмите кнопку "Play" или отправьте `/start`
+
+Игра должна открыться! 🎉
+
+---
+
+## 🧪 Локальное тестирование
+
+Для тестирования на компьютере:
 
 ```bash
-# Клонируйте репозиторий
-git clone https://github.com/leshkeeeee/telegram-clicker-app.git
-cd telegram-clicker-app
-
 # Запустите локальный сервер
-python -m http.server 8000
+python server.py
 # или
-npx serve
+python -m http.server 8000
 
 # Откройте в браузере
 http://localhost:8000
 ```
 
+⚠️ **Важно:** Telegram API работает только внутри Telegram, не в обычном браузере.
+
+---
+
 ## 📁 Структура проекта
 
 ```
 telegram-clicker-app/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # Автоматический деплой
-├── index.html                  # Главная страница игры
-├── app.js                      # Логика игры (17KB)
-├── style.css                   # Стили и анимации (9KB)
-├── manifest.json               # PWA манифест
-├── test.html                   # Страница для тестирования
-├── QUICKSTART.md               # Быстрый старт за 5 минут
-├── TELEGRAM_SETUP.md           # Подробная инструкция
-├── SETUP_COMPLETE.md           # Полное руководство
-└── README.md                   # Этот файл
+├── index.html          # Главная страница игры
+├── app.js              # Логика игры
+├── style.css           # Стили и анимации
+├── test.html           # Тестовая страница
+├── manifest.json       # PWA манифест
+├── bot.py              # Python бот (опционально)
+├── server.py           # Локальный сервер
+├── start.bat           # Запуск на Windows
+├── start.sh            # Запуск на Mac/Linux
+└── .github/workflows/  # GitHub Actions
 ```
+
+---
 
 ## 🎮 Игровая механика
 
-### Тапы
-- Каждый тап тратит энергию и приносит монеты
-- Сила тапа увеличивается с улучшениями
-- Энергия автоматически восстанавливается
-
 ### Улучшения
 
-| Улучшение | Эффект | Начальная цена | Множитель |
-|-----------|--------|----------------|-----------|
-| 🔋 Energy Limit | +50% к максимальной энергии | 100 💎 | 1.8x |
-| ⚡ Tap Power | +50% к силе тапа | 50 💎 | 1.6x |
-| 🤖 Auto Farm | +10 монет/час | 500 💎 | 2.0x |
-| ⚡ Recharge Speed | +50% к скорости восстановления | 200 💎 | 1.7x |
+| Улучшение | Эффект | Цена |
+|-----------|--------|------|
+| 🔋 Energy Limit | +50% энергии | 100 💎 |
+| ⚡ Tap Power | +50% силы тапа | 50 💎 |
+| 🤖 Auto Farm | +10 монет/час | 500 💎 |
+| ⚡ Recharge Speed | +50% восстановления | 200 💎 |
 
 ### Достижения
 
-- 👆 **First Tap** - Сделайте первый тап (10 💎)
-- 🔥 **Tapper** - Сделайте 100 тапов (50 💎)
-- ⚡ **Pro Tapper** - Сделайте 1000 тапов (200 💎)
-- 💰 **First K** - Заработайте 1000 монет (100 💎)
-- 💎 **Rich** - Заработайте 10000 монет (500 💎)
-- 🏆 **Level 5** - Достигните 5 уровня (250 💎)
-- 👑 **Level 10** - Достигните 10 уровня (1000 💎)
+- 👆 First Tap - первый тап (10 💎)
+- 🔥 Tapper - 100 тапов (50 💎)
+- ⚡ Pro Tapper - 1000 тапов (200 💎)
+- 💰 First K - 1000 монет (100 💎)
+- 💎 Rich - 10000 монет (500 💎)
+- 🏆 Level 5 - 5 уровень (250 💎)
+- 👑 Level 10 - 10 уровень (1000 💎)
+
+---
+
+## ❓ Проблемы?
+
+### GitHub Pages показывает 404
+- Проверьте что выбрано "GitHub Actions" в Source
+- Убедитесь что workflow завершился успешно (зеленая галочка)
+- Подождите 2-3 минуты после деплоя
+- Очистите кэш браузера (Ctrl+F5)
+
+### GitHub Actions не запускаются
+- Проверьте что Actions включены в настройках
+- Запустите workflow вручную через "Run workflow"
+- Используйте Vercel как альтернативу
+
+### Бот не открывает игру
+- Проверьте что URL правильный (без лишних слешей)
+- Убедитесь что сайт открывается в браузере
+- Проверьте что URL начинается с `https://`
+
+### Не работает в Telegram
+- Убедитесь что используете актуальную версию Telegram
+- Проверьте что Mini App создан через @BotFather
+- Попробуйте переоткрыть бота
+
+---
 
 ## 🛠️ Технологии
 
-- **Frontend**: Vanilla JavaScript (ES6+)
-- **API**: Telegram Web App API
-- **Стили**: CSS3 с анимациями и градиентами
-- **Хранилище**: LocalStorage + Telegram Cloud Storage
-- **Деплой**: GitHub Actions + GitHub Pages
-- **PWA**: Manifest.json для установки
+- **Frontend:** Vanilla JavaScript (ES6+)
+- **API:** Telegram Web App API
+- **Стили:** CSS3 с анимациями
+- **Хранилище:** LocalStorage + Telegram Cloud Storage
+- **Деплой:** Vercel / GitHub Pages
 
-## 📱 Поддержка платформ
-
-| Платформа | Браузер | Статус |
-|-----------|---------|--------|
-| iOS | Safari, Telegram | ✅ Полная поддержка |
-| Android | Chrome, Telegram | ✅ Полная поддержка |
-| Desktop | Chrome, Firefox, Safari | ✅ Полная поддержка |
-
-## 🎨 Кастомизация
-
-### Изменить цветовую схему
-
-Отредактируйте CSS переменные в `style.css`:
-
-```css
-:root {
-    --bg-primary: #0a0e27;        /* Основной фон */
-    --bg-secondary: #151b3d;      /* Вторичный фон */
-    --accent-primary: #6c5ce7;    /* Основной акцент */
-    --accent-secondary: #a29bfe;  /* Вторичный акцент */
-    --text-primary: #ffffff;      /* Основной текст */
-}
-```
-
-### Изменить баланс игры
-
-В `app.js` измените начальные значения:
-
-```javascript
-constructor() {
-    this.balance = 0;           // Начальный баланс
-    this.energy = 1000;         // Начальная энергия
-    this.maxEnergy = 1000;      // Максимальная энергия
-    this.tapPower = 1;          // Сила тапа
-    this.rechargeRate = 1;      // Скорость восстановления
-}
-```
-
-### Изменить стоимость улучшений
-
-```javascript
-this.boosts = {
-    energy: { level: 1, cost: 100, multiplier: 1.5 },
-    multiplier: { level: 1, cost: 50, multiplier: 1.5 },
-    auto: { level: 0, cost: 500, increment: 10 },
-    recharge: { level: 1, cost: 200, multiplier: 1.5 }
-};
-```
-
-## 🧪 Тестирование
-
-### Локальное тестирование
-```bash
-python -m http.server 8000
-# Откройте: http://localhost:8000
-```
-
-### Тестирование в Telegram
-1. Откройте: https://leshkeeeee.github.io/telegram-clicker-app/test.html
-2. Проверьте доступность всех API
-3. Протестируйте основные функции
-
-## 🐛 Решение проблем
-
-<details>
-<summary><b>Приложение не открывается</b></summary>
-
-- Проверьте что GitHub Pages активирован
-- Убедитесь что URL правильный (без лишних слешей)
-- Проверьте консоль браузера на ошибки
-- Подождите 1-2 минуты после активации Pages
-</details>
-
-<details>
-<summary><b>Не работает Telegram API</b></summary>
-
-- Убедитесь что подключен скрипт `telegram-web-app.js`
-- Проверьте что приложение открыто внутри Telegram
-- Используйте `tg.ready()` перед другими вызовами
-- Проверьте версию Telegram (должна быть актуальной)
-</details>
-
-<details>
-<summary><b>Не сохраняется прогресс</b></summary>
-
-- Проверьте localStorage в браузере
-- Убедитесь что CloudStorage API доступен
-- Проверьте права доступа к хранилищу
-- Очистите кэш и попробуйте снова
-</details>
-
-## 📚 Документация
-
-- 📖 [QUICKSTART.md](./QUICKSTART.md) - Быстрый старт за 5 минут
-- 📖 [TELEGRAM_SETUP.md](./TELEGRAM_SETUP.md) - Подробная инструкция по настройке
-- 📖 [SETUP_COMPLETE.md](./SETUP_COMPLETE.md) - Полное руководство с вашими URL
-
-## 🔗 Полезные ссылки
-
-- 🌐 **Демо**: https://leshkeeeee.github.io/telegram-clicker-app/
-- 🧪 **Тест**: https://leshkeeeee.github.io/telegram-clicker-app/test.html
-- 🤖 **BotFather**: https://t.me/BotFather
-- 📚 **Telegram Mini Apps Docs**: https://core.telegram.org/bots/webapps
-- 💻 **GitHub**: https://github.com/leshkeeeee/telegram-clicker-app
-
-## 📝 Лицензия
-
-MIT License - используйте свободно для своих проектов!
-
-## 🤝 Вклад
-
-Pull requests приветствуются! Для больших изменений сначала откройте issue.
-
-1. Fork репозиторий
-2. Создайте ветку: `git checkout -b feature/amazing-feature`
-3. Commit изменения: `git commit -m 'Add amazing feature'`
-4. Push в ветку: `git push origin feature/amazing-feature`
-5. Откройте Pull Request
+---
 
 ## 📞 Поддержка
 
-Если возникли вопросы или проблемы:
-- 📝 Создайте [issue](https://github.com/leshkeeeee/telegram-clicker-app/issues)
-- 📖 Проверьте [документацию](./TELEGRAM_SETUP.md)
-- 🧪 Используйте [тестовую страницу](https://leshkeeeee.github.io/telegram-clicker-app/test.html)
+- 📝 [Создать issue](https://github.com/leshkeeeee/telegram-clicker-app/issues)
+- 📚 [Telegram Mini Apps Docs](https://core.telegram.org/bots/webapps)
+- 🤖 [@BotFather](https://t.me/BotFather)
+
+---
+
+## 📝 Лицензия
+
+MIT License - используйте свободно!
 
 ---
 
 <div align="center">
 
-**Сделано с 💜 для Telegram Mini Apps**
+**Сделано с 💜 для Telegram**
 
-⭐ Поставьте звезду, если проект был полезен!
+⭐ Поставьте звезду если проект был полезен!
 
 </div>
